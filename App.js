@@ -1,11 +1,16 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import Home from './src/screens/Home';
+import { useState } from 'react';
 
 export default function App() {
+  const [gameNumber, setGameNumber] = useState(0);
+  function handleChosenNumber(chosenNumber) {
+    console.log(chosenNumber);
+    setGameNumber(chosenNumber);
+  }
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <Home onChooseNumber={handleChosenNumber} />
     </View>
   );
 }
