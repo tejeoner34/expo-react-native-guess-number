@@ -1,6 +1,7 @@
 import { StyleSheet, View } from 'react-native';
 import Home from './src/screens/Home';
 import { useState } from 'react';
+import OnGameScreen from './src/screens/OnGameScreen';
 
 export default function App() {
   const [gameNumber, setGameNumber] = useState(0);
@@ -10,7 +11,8 @@ export default function App() {
   }
   return (
     <View style={styles.container}>
-      <Home onChooseNumber={handleChosenNumber} />
+      {/* <Home onChooseNumber={handleChosenNumber} /> */}
+      <OnGameScreen />
     </View>
   );
 }

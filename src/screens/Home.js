@@ -1,11 +1,12 @@
 import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import NumberInput from '../components/NumberInput';
+import Title from '../components/Title';
 
 export default function Home({ onChooseNumber }) {
   return (
     <View style={styles.homeContainer}>
-      <Text style={styles.titleText}>Guess My Number</Text>
+      <Title text="Guess My Number" />
       <NumberInput onConfirm={onChooseNumber} />
     </View>
   );
@@ -21,13 +22,5 @@ const styles = StyleSheet.create({
     backgroundColor: 'red',
     gap: 35,
     paddingTop: 80,
-  },
-  titleText: {
-    color: 'white',
-    fontSize: 30,
-    fontWeight: 'bold',
-    borderColor: 'white',
-    borderWidth: 2,
-    padding: 10,
   },
 });
