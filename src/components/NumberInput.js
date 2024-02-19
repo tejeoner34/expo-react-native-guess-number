@@ -1,9 +1,10 @@
 import { Button, StyleSheet, Text, TextInput, View, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
 import useCustomAlert from '../customHooks/useCustomAlert';
+import CustomButton from './CustomButton';
 
 export default function NumberInput({ onConfirm }) {
-  const [inputNumber, setInputNumber] = useState(0);
+  const [inputNumber, setInputNumber] = useState('');
   const { showAlert } = useCustomAlert();
 
   function handleChangeNumber(input) {
@@ -11,7 +12,7 @@ export default function NumberInput({ onConfirm }) {
   }
 
   function handleConfirmNumber() {
-    if (inputNumber < 0) {
+    if (Number(inputNumber) < 0) {
       showAlert('Error', 'Number must be positive');
       return;
     }
@@ -19,7 +20,8 @@ export default function NumberInput({ onConfirm }) {
   }
 
   function handleResetNumber() {
-    setInputNumber(0);
+    console.log('asdsadsadsadas');
+    setInputNumber('');
   }
 
   return (
@@ -32,20 +34,8 @@ export default function NumberInput({ onConfirm }) {
         onChangeText={handleChangeNumber}
       />
       <View style={styles.buttonsContainer}>
-        <TouchableOpacity
-          style={styles.buttonContainer}
-          activeOpacity={0.8}
-          onPress={handleResetNumber}
-        >
-          <Text style={styles.buttonText}>Reset</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.buttonContainer}
-          activeOpacity={0.8}
-          onPress={handleConfirmNumber}
-        >
-          <Text style={styles.buttonText}>Confirm</Text>
-        </TouchableOpacity>
+        <CustomButton text="Reset" onTap={handleResetNumber} />
+        <CustomButton text="Confirm" onTap={handleConfirmNumber} />
       </View>
     </View>
   );
@@ -79,18 +69,5 @@ const styles = StyleSheet.create({
     gap: 10,
     width: '100%',
     justifyContent: 'center',
-  },
-  buttonContainer: {
-    flex: 1,
-    alignItems: 'center',
-    backgroundColor: '#8a4c5c',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 20,
-  },
-  buttonText: {
-    color: '#ffffff', // Text color
-    fontSize: 16,
-    fontWeight: 'bold',
   },
 });
