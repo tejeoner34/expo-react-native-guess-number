@@ -11,15 +11,16 @@ export default function App() {
     setGameNumber(chosenNumber);
   }
   return (
-    <ImageBackground
-      source={require('./assets/background.png')} // Ruta de tu imagen
-      style={styles.backgroundImage}
-    >
-      <LinearGradient colors={['#4e0329', '#ddb52f']} style={styles.container}>
+    <LinearGradient colors={['#4e0329', '#ddb52f']} style={styles.container}>
+      <ImageBackground
+        source={require('./assets/background.png')} // Ruta de tu imagen
+        style={styles.backgroundImage}
+        imageStyle={{ opacity: 0.15 }}
+      >
         {/* <Home onChooseNumber={handleChosenNumber} /> */}
         <OnGameScreen />
-      </LinearGradient>
-    </ImageBackground>
+      </ImageBackground>
+    </LinearGradient>
   );
 }
 
@@ -28,6 +29,7 @@ const styles = StyleSheet.create({
     flex: 1,
     resizeMode: 'cover',
     justifyContent: 'center',
+    width: '100%',
   },
   container: {
     flex: 1,

@@ -1,26 +1,27 @@
 import { StyleSheet, Text, View } from 'react-native';
-import React from 'react';
 import Title from '../components/Title';
 import CustomButton from '../components/CustomButton';
 import GuessList from '../components/GuessList';
+import useGameLogic from '../customHooks/useGameLogic';
 
 const exampleData = [
   { id: 1, guessedNumber: 42 },
   { id: 2, guessedNumber: 18 },
   { id: 3, guessedNumber: 65 },
-  // Agrega más objetos según sea necesario
 ];
 
-export default function OnGameScreen() {
+export default function OnGameScreen({ actualNumber = 50 }) {
+  const { guessedNumber, handleIsLowerNumber, handleIsBiggerNumber } = useGameLogic(actualNumber);
+
   return (
     <View style={styles.gameContainer}>
       <Title text="Opponent´s Guess" />
-      <Title text="57" customStyles={styles.opponentNumber} />
+      <Title text={String(guessedNumber)} customStyles={styles.opponentNumber} />
       <View style={styles.inputContainer}>
         <Text style={styles.inputTitle}>Higher or Lower</Text>
         <View style={styles.buttonsContainer}>
-          <CustomButton text="Reset" />
-          <CustomButton text="Confirm" />
+          <CustomButton text="-" onTap={handleIsLowerNumber} />
+          <CustomButton text="+" onTap={handleIsBiggerNumber} />
         </View>
       </View>
       <View>
