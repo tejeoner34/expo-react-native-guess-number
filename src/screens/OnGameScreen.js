@@ -11,7 +11,8 @@ const exampleData = [
 ];
 
 export default function OnGameScreen({ actualNumber = 50 }) {
-  const { guessedNumber, handleIsLowerNumber, handleIsBiggerNumber } = useGameLogic(actualNumber);
+  const { guesses, guessedNumber, handleIsLowerNumber, handleIsBiggerNumber } =
+    useGameLogic(actualNumber);
 
   return (
     <View style={styles.gameContainer}>
@@ -25,7 +26,7 @@ export default function OnGameScreen({ actualNumber = 50 }) {
         </View>
       </View>
       <View>
-        <GuessList guessesList={exampleData} />
+        <GuessList guessesList={guesses} />
       </View>
     </View>
   );

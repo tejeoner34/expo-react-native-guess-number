@@ -1,12 +1,13 @@
-import { ImageBackground, StyleSheet, View } from 'react-native';
+import { ImageBackground, StyleSheet } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import Home from './src/screens/Home';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import OnGameScreen from './src/screens/OnGameScreen';
 import GameOver from './src/screens/GameOver';
 
 export default function App() {
   const [gameNumber, setGameNumber] = useState(0);
+  const attempts = useRef(0);
   function handleChosenNumber(chosenNumber) {
     console.log(chosenNumber);
     setGameNumber(chosenNumber);
@@ -19,8 +20,8 @@ export default function App() {
         imageStyle={{ opacity: 0.15 }}
       >
         {/* <Home onChooseNumber={handleChosenNumber} /> */}
-        {/* <OnGameScreen /> */}
-        <GameOver />
+        <OnGameScreen />
+        {/* <GameOver actualNumber={gameNumber} /> */}
       </ImageBackground>
     </LinearGradient>
   );

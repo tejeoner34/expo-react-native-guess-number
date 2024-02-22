@@ -3,16 +3,16 @@ import React from 'react';
 import Title from '../components/Title';
 import CustomButton from '../components/CustomButton';
 
-export default function GameOver({ actualNumber = 0 }) {
+export default function GameOver({ actualNumber = 0, attempts = 0, onRestart }) {
   return (
     <View style={styles.gameOverContainer}>
       <Title text="GAME OVER!" />
       <Image source={require('../../assets/success.png')} style={styles.image} />
       <Text style={styles.text}>
-        Your phone needed {actualNumber} to guess {actualNumber}
+        Your phone needed {attempts} to guess {actualNumber}
       </Text>
       <View style={styles.buttonContainer}>
-        <CustomButton text="Start new game" />
+        <CustomButton text="Start new game" onTap={onRestart} />
       </View>
     </View>
   );
