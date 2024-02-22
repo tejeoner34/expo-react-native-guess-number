@@ -3,6 +3,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import Home from './src/screens/Home';
 import { useState } from 'react';
 import OnGameScreen from './src/screens/OnGameScreen';
+import GameOver from './src/screens/GameOver';
 
 export default function App() {
   const [gameNumber, setGameNumber] = useState(0);
@@ -18,7 +19,8 @@ export default function App() {
         imageStyle={{ opacity: 0.15 }}
       >
         {/* <Home onChooseNumber={handleChosenNumber} /> */}
-        <OnGameScreen />
+        {/* <OnGameScreen /> */}
+        <GameOver />
       </ImageBackground>
     </LinearGradient>
   );

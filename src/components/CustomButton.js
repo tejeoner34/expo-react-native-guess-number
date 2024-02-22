@@ -13,6 +13,7 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flex: 1,
     alignItems: 'center',
+    justifyContent: 'center',
     backgroundColor: '#8a4c5c',
     paddingVertical: 10,
     paddingHorizontal: 20,

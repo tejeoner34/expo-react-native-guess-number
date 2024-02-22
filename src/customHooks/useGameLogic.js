@@ -1,12 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const generateRandomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
-let minNumber = 0;
-let maxNumber = 100;
 
 //FALTA MOSTRAR UNA MODAL DE WARNING EN CASO DE QUE ENGAÑEMOS CON EL BOTON
 const useGameLogic = (actualNumber) => {
-  const [guessedNumber, setGuessedNumber] = useState(generateRandomNumber(minNumber, maxNumber));
+  const minNumberRef = useRef(0);
+  const maxNumberRef = useRef(100);
+  const [guessedNumber, setGuessedNumber] = useState(
+    generateRandomNumber(minNumberRef.current, maxNumberRef.current)
+  );
 
   const checkNumber = () => {
     const isCorrect = guessedNumber === actualNumber;
@@ -14,18 +16,16 @@ const useGameLogic = (actualNumber) => {
   };
 
   const generateGuessNumber = () => {
-    setGuessedNumber(generateRandomNumber(minNumber, maxNumber));
+    setGuessedNumber(generateRandomNumber(minNumberRef.current, maxNumberRef.current));
   };
 
   const handleIsLowerNumber = () => {
-    console.log(maxNumber);
-    maxNumber = guessedNumber;
+    minNumberRef.current = guessedNumber;
     generateGuessNumber();
   };
 
   const handleIsBiggerNumber = () => {
-    console.log(minNumber);
-    minNumber = guessedNumber;
+    maxNumberRef.current = guessedNumber;
     generateGuessNumber();
   };
 
