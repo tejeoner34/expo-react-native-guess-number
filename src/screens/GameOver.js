@@ -3,7 +3,7 @@ import React from 'react';
 import Title from '../components/Title';
 import CustomButton from '../components/CustomButton';
 
-export default function GameOver({ actualNumber = 0, attempts = 0, onRestart }) {
+export default function GameOver({ actualNumber, attempts, onRestart }) {
   return (
     <View style={styles.gameOverContainer}>
       <Title text="GAME OVER!" />

@@ -3,6 +3,7 @@ import Title from '../components/Title';
 import CustomButton from '../components/CustomButton';
 import GuessList from '../components/GuessList';
 import useGameLogic from '../customHooks/useGameLogic';
+import { useEffect } from 'react';
 
 const exampleData = [
   { id: 1, guessedNumber: 42 },
@@ -10,9 +11,15 @@ const exampleData = [
   { id: 3, guessedNumber: 65 },
 ];
 
-export default function OnGameScreen({ actualNumber = 50 }) {
-  const { guesses, guessedNumber, handleIsLowerNumber, handleIsBiggerNumber } =
+export default function OnGameScreen({ actualNumber, onGameOver }) {
+  const { isGameOver, guesses, guessedNumber, handleIsLowerNumber, handleIsBiggerNumber } =
     useGameLogic(actualNumber);
+
+  useEffect(() => {
+    if (isGameOver) {
+      onGameOver({ attemps: guesses.length });
+    }
+  }, [isGameOver]);
 
   return (
     <View style={styles.gameContainer}>

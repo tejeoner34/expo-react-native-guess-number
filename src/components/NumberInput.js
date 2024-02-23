@@ -8,19 +8,23 @@ export default function NumberInput({ onConfirm }) {
   const { showAlert } = useCustomAlert();
 
   function handleChangeNumber(input) {
-    setInputNumber(Number(input));
+    if (isNaN(Number(input))) {
+      showAlert('Error', 'Invalid input');
+      return;
+    }
+    setInputNumber(input);
   }
 
   function handleConfirmNumber() {
     if (Number(inputNumber) < 0) {
       showAlert('Error', 'Number must be positive');
+      handleResetNumber();
       return;
     }
     onConfirm(inputNumber);
   }
 
   function handleResetNumber() {
-    console.log('asdsadsadsadas');
     setInputNumber('');
   }
 
@@ -29,6 +33,7 @@ export default function NumberInput({ onConfirm }) {
       <Text style={styles.title}>Enter a Number</Text>
       <TextInput
         style={styles.input}
+        maxLength={2}
         keyboardType="numeric"
         value={inputNumber}
         onChangeText={handleChangeNumber}

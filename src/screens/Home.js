@@ -4,10 +4,13 @@ import NumberInput from '../components/NumberInput';
 import Title from '../components/Title';
 
 export default function Home({ onChooseNumber }) {
+  function handleChooseNumber(number) {
+    onChooseNumber(number);
+  }
   return (
     <View style={styles.homeContainer}>
       <Title text="Guess My Number" />
-      <NumberInput onConfirm={onChooseNumber} />
+      <NumberInput onConfirm={handleChooseNumber} />
     </View>
   );
 }
@@ -19,7 +22,6 @@ const styles = StyleSheet.create({
     height: '100%',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    backgroundColor: 'red',
     gap: 35,
     paddingTop: 80,
   },

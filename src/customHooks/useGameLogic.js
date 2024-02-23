@@ -3,6 +3,8 @@ import useCustomAlert from './useCustomAlert';
 
 const generateRandomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 const isEqualNumber = (num1, num2) => num1 === num2;
+const isSmaller = (num1, num2) => num1 < num2;
+const isBigger = (num1, num2) => num1 > num2;
 
 //FALTA MOSTRAR UNA MODAL DE WARNING EN CASO DE QUE ENGAÑEMOS CON EL BOTON
 const useGameLogic = (actualNumber) => {
@@ -13,20 +15,29 @@ const useGameLogic = (actualNumber) => {
     generateRandomNumber(minNumberRef.current, maxNumberRef.current)
   );
   const [guesses, setGuesses] = useState([]);
+  const [isGameOver, setIsGameOver] = useState(false);
 
   const generateGuessNumber = () => {
     setGuessedNumber(generateRandomNumber(minNumberRef.current, maxNumberRef.current));
   };
 
   const handleIsLowerNumber = () => {
+    if (isBigger(actualNumber, guessedNumber)) {
+      showAlert('Warning', 'Don´t lie');
+      return;
+    }
     handleMistake();
-    maxNumberRef.current = guessedNumber;
+    maxNumberRef.current = guessedNumber - 1;
     generateGuessNumber();
   };
 
   const handleIsBiggerNumber = () => {
+    if (isSmaller(actualNumber, guessedNumber)) {
+      showAlert('Warning', 'Don´t lie');
+      return;
+    }
     handleMistake();
-    minNumberRef.current = guessedNumber;
+    minNumberRef.current = guessedNumber + 1;
     generateGuessNumber();
   };
 
@@ -36,12 +47,17 @@ const useGameLogic = (actualNumber) => {
   };
 
   useEffect(() => {
+    console.log(
+      isEqualNumber(guessedNumber, actualNumber),
+      typeof guessedNumber,
+      typeof actualNumber
+    );
     if (isEqualNumber(guessedNumber, actualNumber)) {
-      showAlert('Congratulations', 'You win!');
+      setIsGameOver(true);
     }
   }, [guessedNumber]);
 
-  return { guesses, guessedNumber, handleIsLowerNumber, handleIsBiggerNumber };
+  return { isGameOver, guesses, guessedNumber, handleIsLowerNumber, handleIsBiggerNumber };
 };
 
 export default useGameLogic;
