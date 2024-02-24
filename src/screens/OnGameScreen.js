@@ -17,7 +17,7 @@ export default function OnGameScreen({ actualNumber, onGameOver }) {
 
   useEffect(() => {
     if (isGameOver) {
-      onGameOver({ attemps: guesses.length });
+      onGameOver(guesses.length);
     }
   }, [isGameOver]);
 
@@ -32,7 +32,7 @@ export default function OnGameScreen({ actualNumber, onGameOver }) {
           <CustomButton text="+" onTap={handleIsBiggerNumber} />
         </View>
       </View>
-      <View>
+      <View style={{ flex: 1 }}>
         <GuessList guessesList={guesses} />
       </View>
     </View>
@@ -43,8 +43,6 @@ const styles = StyleSheet.create({
   gameContainer: {
     flex: 1,
     width: '100%',
-    height: '100%',
-    justifyContent: 'flex-start',
     alignItems: 'center',
     gap: 35,
     paddingTop: 50,
@@ -59,7 +57,6 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     width: '80%',
-    backgroundColor: '#fff',
     padding: 30,
     borderRadius: 10,
     justifyContent: 'center',

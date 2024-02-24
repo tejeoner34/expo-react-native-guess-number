@@ -47,11 +47,6 @@ const useGameLogic = (actualNumber) => {
   };
 
   useEffect(() => {
-    console.log(
-      isEqualNumber(guessedNumber, actualNumber),
-      typeof guessedNumber,
-      typeof actualNumber
-    );
     if (isEqualNumber(guessedNumber, actualNumber)) {
       setIsGameOver(true);
     }

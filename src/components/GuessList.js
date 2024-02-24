@@ -25,7 +25,6 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   listContainer: {
-    justifyContent: 'center',
     alignItems: 'center',
     gap: 15,
   },
@@ -39,6 +38,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     gap: 10,
+    marginBottom: 10,
   },
   idText: {
     fontWeight: 'bold',
