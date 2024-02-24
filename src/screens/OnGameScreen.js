@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { Dimensions, StyleSheet, Text, View } from 'react-native';
 import Title from '../components/Title';
 import CustomButton from '../components/CustomButton';
 import GuessList from '../components/GuessList';
@@ -39,6 +39,8 @@ export default function OnGameScreen({ actualNumber, onGameOver }) {
   );
 }
 
+const screenWidth = Dimensions.get('window').width;
+
 const styles = StyleSheet.create({
   gameContainer: {
     flex: 1,
@@ -51,7 +53,7 @@ const styles = StyleSheet.create({
     padding: 30,
     width: '80%',
     textAlign: 'center',
-    fontSize: 35,
+    fontSize: screenWidth < 380 ? 25 : 35,
     fontWeight: 'bold',
     borderRadius: 7,
   },
@@ -65,7 +67,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#631547',
   },
   inputTitle: {
-    fontSize: 25,
+    fontSize: screenWidth > 380 ? 25 : 20,
     color: 'orange',
   },
   buttonsContainer: {

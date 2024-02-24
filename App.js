@@ -1,6 +1,7 @@
 import { ImageBackground, StyleSheet } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import * as SplashScreen from 'expo-splash-screen';
+import { StatusBar } from 'expo-status-bar';
 import { useCallback, useState } from 'react';
 import Home from './src/screens/Home';
 import OnGameScreen from './src/screens/OnGameScreen';
@@ -47,19 +48,22 @@ export default function App() {
   }
 
   return (
-    <LinearGradient
-      colors={['#4e0329', '#ddb52f']}
-      style={styles.container}
-      onLayout={onLayoutRootView}
-    >
-      <ImageBackground
-        source={require('./assets/background.png')}
-        style={styles.backgroundImage}
-        imageStyle={{ opacity: 0.15 }}
+    <>
+      <StatusBar style="light" />
+      <LinearGradient
+        colors={['#4e0329', '#ddb52f']}
+        style={styles.container}
+        onLayout={onLayoutRootView}
       >
-        {screen}
-      </ImageBackground>
-    </LinearGradient>
+        <ImageBackground
+          source={require('./assets/background.png')}
+          style={styles.backgroundImage}
+          imageStyle={{ opacity: 0.15 }}
+        >
+          {screen}
+        </ImageBackground>
+      </LinearGradient>
+    </>
   );
 }
 
